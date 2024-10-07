@@ -39,20 +39,20 @@
             Canvas.TabIndex = 0;
             Canvas.TabStop = false;
             // 
-            // timer1
+            // RenderTim
             // 
             RenderTim.Enabled = true;
-            RenderTim.Interval = timeToRender;
             RenderTim.Tick += RenderTim_Tick;
+            RenderTim.Interval = timeToRender;
             // 
-            // Form1
+            // Clock
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 700);
             Controls.Add(Canvas);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "Clock";
+            Text = "Clock";
             ((System.ComponentModel.ISupportInitialize)Canvas).EndInit();
             ResumeLayout(false);
         }
@@ -61,6 +61,7 @@
 
         private PictureBox Canvas;
         private System.Windows.Forms.Timer RenderTim;
-        private int timeToRender = 100;
+
+        private int timeToRender = 500;
     }
 }

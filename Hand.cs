@@ -13,7 +13,8 @@ namespace ClockApp
         public float lenght;
         public double step;
 
-        public Hand(Graphics graph, Point origin, float lenght, double stepDegrees, double startingAngle = 0) { 
+        public Hand(Graphics graph, Point origin, float lenght, double stepDegrees, double startingAngle = 0) 
+        { 
         
             this.graph  = graph;
             this.origin = origin;
@@ -22,6 +23,13 @@ namespace ClockApp
 
             this.lastAngle = startingAngle;
         }
+
+        public void updateOrigin(int coordX,int coordY)
+        {
+            this.origin.X = coordX;
+            this.origin.Y = coordY;
+        }
+
         public void render(Pen pen, double canvasWidth, double canvasHeight)
         {
             if (lastAngle >= 360) lastAngle = 0;
@@ -37,25 +45,8 @@ namespace ClockApp
                 (int) ((Math.Cos(degToRad(lastAngle)) * lenght))
             );
 
-            if(0 <= lastAngle && lastAngle < 90) {
-                virtualCoord.Y = (int) ( -1 * realCoord.Y + canvasHeight / 2);
-                virtualCoord.X = (int) ( 1 * realCoord.X + canvasWidth / 2);
-            }
-            else if (90 <= lastAngle && lastAngle < 180)
-            {
-                virtualCoord.Y = (int)( -1 * realCoord.Y + canvasHeight / 2);
-                virtualCoord.X = (int)( 1 * realCoord.X + canvasWidth / 2);
-            }
-            else if (180 <= lastAngle && lastAngle < 270)
-            {
-                virtualCoord.Y = (int)( -1 * realCoord.Y + canvasHeight / 2);
-                virtualCoord.X = (int)( 1 * realCoord.X + canvasWidth / 2);
-            }
-            else
-            {
-                virtualCoord.Y = (int)( -1 * realCoord.Y + canvasHeight / 2);
-                virtualCoord.X = (int)( 1 * realCoord.X + canvasWidth / 2);
-            }
+            virtualCoord.Y = (int)(-1 * realCoord.Y + canvasHeight / 2);
+            virtualCoord.X = (int)(1 * realCoord.X + canvasWidth / 2);
 
             virtualCoord.Y -= (int) (canvasHeight * 0.03);
 
