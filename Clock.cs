@@ -26,25 +26,31 @@ namespace ClockApp
             originX = this.Width / 2;
             originY = this.Height / 2;
 
+            double secStep = (stepPerMilisecond * timeToRender);
+            double secAng = second * 6;
             secondsHand = new Hand(
                 graph, 
                 new Point((int)originX, (int)originY),
-                300, (stepPerMilisecond * timeToRender),
-                second * 6
+                300, secStep,
+                secAng
             );
 
+            double minStep = (stepPerMilisecond * timeToRender) / 60;
+            double minAng = minute * 6 + second * minStep ;
             minsHand = new Hand(
                 graph,
                 new Point((int)originX, (int)originY),
-                150, (stepPerMilisecond * timeToRender) / 60,
-                minute * 6
+                150, minStep,
+                minAng
             );
 
+            double hourStep = (stepPerMilisecond * timeToRender) / 360;
+            double hourAng = ((hour * 5) * 6) + (minute * 60 * hourStep) + (second * hourStep);
             hoursHand = new Hand(
                 graph,
                 new Point((int)originX, (int)originY),
-                50, (stepPerMilisecond * timeToRender) / 360,
-                (hour * 5) * 6
+                80, hourStep,
+                hourAng
             );
 
         }
